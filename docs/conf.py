@@ -24,7 +24,7 @@ version = ".".join(release.split(".")[0:2])
 author = "Research Data and Communication Technologies Benefit Corp."
 """Credits for this version."""
 
-copyright = "2026"  # TODO
+copyright = "2026"
 """The years over which the work was done."""
 
 extensions = [
@@ -197,7 +197,9 @@ html_theme_path = [sphinx_book_theme.get_html_theme_path()]
 
 html_theme_options = {
     "home_page_in_toc": True,
-    "repository_url": (repo_url := "https://github.com/Nanyonga-Rahmah/Todolist/Todolist"),
+    "repository_url": (
+        repo_url := "https://github.com/Nanyonga-Rahmah/Todolist/Todolist"
+    ),
     "path_to_docs": "docs",
     "use_edit_page_button": True,
     "use_repository_button": True,

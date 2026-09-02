@@ -1,8 +1,4 @@
-"""Example unit test.
-
-TODO: Replace this module with real unit tests.
-
-"""
+"""Example unit test."""
 
 import pytest
 
