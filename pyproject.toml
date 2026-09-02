@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 # cf. tool.setuptools.package-dir section below
 name = "Todolist"
 description = "A python Todolist with TDD"
-version = "0.0.0"
+version = "0.0.1"
 # cf. https://www.bitecode.dev/p/relieving-your-python-packaging-pain,
 # https://devguide.python.org/versions/
 requires-python = ">=3.12"
