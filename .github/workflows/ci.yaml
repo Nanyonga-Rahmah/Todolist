@@ -1,0 +1,103 @@
+---
+name: Continuous Integration
+
+# Trigger this workflow manually, by pushing commits to any branch, or
+# by filing a pull request.
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+permissions: read-all
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ResearchDataCom/actions/pre-commit@181ab3c28a4c3942ee37b25dd89442bdcf0b6509 # v3.0.0
+        with:
+          access-app-id: ${{ vars.PRIVATE_REPOSITORY_ACCESS_APP_ID }}
+          access-key: ${{ secrets.PRIVATE_REPOSITORY_ACCESS_KEY }}
+      - uses: ResearchDataCom/actions/python-freeze@181ab3c28a4c3942ee37b25dd89442bdcf0b6509 # v3.0.0
+
+  test:
+    needs:
+      - lint
+    strategy:
+      matrix:
+        python-version:
+          - "3.12"
+          - "3.13"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ResearchDataCom/actions/python-test@181ab3c28a4c3942ee37b25dd89442bdcf0b6509 # v3.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+
+  release:
+    # Prevent race conditions of more than one release job in case of
+    # multiple pushes to the main branch in a short period of time.
+    concurrency:
+      group: ${{ github.workflow }}-release-${{ github.ref_name }}
+      cancel-in-progress: false
+    needs:
+      - test
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - id: release
+        uses: ResearchDataCom/actions/cz-bump@181ab3c28a4c3942ee37b25dd89442bdcf0b6509 # v3.0.0
+    outputs:
+      released: ${{ steps.release.outputs.released }}
+      tag: ${{ steps.release.outputs.tag }}
+
+  build:
+    needs:
+      - release
+    if: needs.release.outputs.released
+    strategy:
+      matrix:
+        python-version:
+          - "3.12"
+          - "3.13"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ResearchDataCom/actions/python-build@181ab3c28a4c3942ee37b25dd89442bdcf0b6509 # v3.0.0
+        with:
+          artifact-name: python-${{ matrix.python-version }}-build-artifacts
+          python-version: ${{ matrix.python-version }}
+
+  github:
+    needs:
+      - release
+      - build
+    if: needs.release.outputs.released
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ResearchDataCom/actions/publish-github@181ab3c28a4c3942ee37b25dd89442bdcf0b6509 # v3.0.0
+        with:
+          artifact-paths: requirements.txt,dist/*
+          tag: ${{ needs.release.outputs.tag }}
+
+  docs:
+    needs:
+      - release
+    if: needs.release.outputs.released
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ResearchDataCom/actions/sphinx-build@181ab3c28a4c3942ee37b25dd89442bdcf0b6509 # v3.0.0
+
+  ghpages:
+    needs:
+      - release
+      - docs
+    if: needs.release.outputs.released
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ResearchDataCom/actions/publish-ghpages@181ab3c28a4c3942ee37b25dd89442bdcf0b6509 # v3.0.0
