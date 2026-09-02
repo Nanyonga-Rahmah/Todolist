@@ -1,0 +1,748 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Contribution Guidelines" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="contributing.html" />
+<meta property="og:site_name" content="Todolist" />
+<meta property="og:description" content="The project practices test-driven development in Git feature (topic) branches to maintain a linear commit history. Changes must be self-contained and buildable, with updated tests and documentation..." />
+<meta property="og:image:width" content="1146" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image" content="_images/social_previews/summary_contributing_dc6561ca.png" />
+<meta property="og:image:alt" content="The project practices test-driven development in Git feature (topic) branches to maintain a linear commit history. Changes must be self-contained and buildable, with updated tests and documentation..." />
+<meta name="description" content="The project practices test-driven development in Git feature (topic) branches to maintain a linear commit history. Changes must be self-contained and buildable, with updated tests and documentation..." />
+<meta name="twitter:card" content="summary_large_image" />
+
+    <title>Contribution Guidelines &#8212; Todolist</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=4418a689" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+
+    <script src="_static/documentation_options.js?v=5db94ae7"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script defer="defer" src="https://unpkg.com/@popperjs/core@2"></script>
+    <script defer="defer" src="https://unpkg.com/tippy.js@6"></script>
+    <script defer="defer" src="_static/tippy/contributing.4017000b-40d2-4e25-a89a-0167a67b0188.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contributing';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="icon" href="_static/favicon-32x32.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="apidocs/index.html" />
+    <link rel="prev" title="Project Charter" href="charter.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.0" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Todolist</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Versions">
+  <div class="bd-toc-item navbar-nav">
+    <ul class="nav bd-sidenav">
+      <li class="caption has-children"><strong>Version:</strong> v0.0.0<details><summary><span class="toctree-toggle" role="presentation"><svg class="svg-inline--fa fa-chevron-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg><!-- <i class="fa-solid fa-chevron-down"></i> Font Awesome fontawesome.com --></span></summary>
+      <a href="../../v0.0.1/en/index.html">v0.0.1</a>
+      <a href="../../v0.0.0/en/index.html">v0.0.0</a>
+      </details></li>
+      <li class="caption has-children"><strong>Language:</strong> en</li>
+    </ul>
+  </div>
+</div></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Product Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="charter.html">Project Charter</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Contribution Guidelines</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Appendices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="apidocs/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="apidocs/docs/docs.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">docs</span></code></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="apidocs/docs/docs.conf.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">docs.conf</span></code></a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="apidocs/tests/tests.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tests</span></code></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="apidocs/tests/tests.conftest.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tests.conftest</span></code></a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="apidocs/Todolist/Todolist.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Todolist</span></code></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="apidocs/Todolist/Todolist.test.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Todolist.test</span></code></a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/Todolist/Todolist.test.integration.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Todolist.test.integration</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/Todolist/Todolist.test.conftest.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Todolist.test.conftest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/Todolist/Todolist.test.test_example.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Todolist.test.test_example</span></code></a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Annotated Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Nanyonga-Rahmah/Todolist/Todolist" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Nanyonga-Rahmah/Todolist/Todolist/edit/main/docs/contributing.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Nanyonga-Rahmah/Todolist/Todolist/issues/new?title=Issue%20on%20page%20%2Fcontributing.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/contributing.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Contribution Guidelines</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-environment">Development Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-style">Code Style</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-messages">Commit Messages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-scopes">Commit Scopes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-types">Commit Types</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+
+  <section class="tex2jax_ignore mathjax_ignore" id="contribution-guidelines">
+<h1>Contribution Guidelines<a class="headerlink" href="#contribution-guidelines" title="Link to this heading">#</a></h1>
+<p>The project practices <a class="reference external" href="https://tdd.mooc.fi/">test-driven development</a>
+in
+<a class="reference external" href="https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow">Git feature (topic) branches</a>
+to maintain a <a class="reference external" href="https://archive.is/VpWTs">linear commit history</a>.
+Changes must be self-contained and buildable, with updated tests and
+documentation.  Please rebase changes on the latest HEAD of the main
+branch before submitting them for review as a
+<a class="reference external" href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests">GitHub pull request</a>.</p>
+<section id="development-environment">
+<h2>Development Environment<a class="headerlink" href="#development-environment" title="Link to this heading">#</a></h2>
+<p>This project requires Python 3.12 (or newer).  To set up your
+development environment on Linux or macOS, run these
+<a class="reference external" href="https://www.gnu.org/software/make/">GNU Make</a> commands from the
+project root directory.</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">setup</span></code></dt><dd><p>Create (or update) a
+<a class="reference external" href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments">Python virtual environment</a>
+named <code class="docutils literal notranslate"><span class="pre">.venv</span></code> in the project root directory, and perform an editable
+installation of this project that includes development and testing
+tools.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">pre-commit</span></code></dt><dd><p>Configure optional pre-commit hooks, which require the virtual
+environment to be active in your code editor or
+<a class="reference external" href="https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain">Git porcelain</a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code></dt><dd><p>Reset the development environment, which includes removing the
+pre-commit hooks.</p>
+</dd>
+</dl>
+<p>Additional targets are available, several of which are listed below.
+Review the makefile for details.</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint</span></code></dt><dd><p>Check code syntax and style.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code></dt><dd><p>Perform comprehensive functional and integration testing.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">smoke</span></code></dt><dd><p>Run a shorter, faster subset of the test suite.</p>
+</dd>
+</dl>
+</section>
+<section id="code-style">
+<h2>Code Style<a class="headerlink" href="#code-style" title="Link to this heading">#</a></h2>
+<p>This project follows these code styles:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://black.readthedocs.io/">Python Black</a>
+and <a class="reference external" href="https://pycqa.github.io/isort/">isort</a></p></li>
+<li><p><a class="reference external" href="https://google.github.io/styleguide/docguide/style.html">the Google Markdown style guide</a>,
+but with a more traditional 70-character line limit</p></li>
+<li><p><a class="reference external" href="https://developers.home-assistant.io/docs/documenting/yaml-style-guide/">the Home Assistant YAML style guide</a></p></li>
+</ul>
+</section>
+<section id="commit-messages">
+<h2>Commit Messages<a class="headerlink" href="#commit-messages" title="Link to this heading">#</a></h2>
+<p>This project implements
+<a class="reference external" href="https://semver.org/spec/v2.0.0.html">Semantic Versioning 2.0.0</a> using
+<a class="reference external" href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits 1.0.0</a>:</p>
+<ul class="simple">
+<li><p>Please use English in commit messages.</p></li>
+<li><p>The first line of the commit message <strong>SHOULD</strong> be at most 100
+characters, while the rest of the commit message <strong>SHOULD</strong> be
+wrapped at column 70.</p></li>
+<li><p>The commit description <strong>SHOULD</strong> be an imperative sentence that
+summarizes the changes, with the starting verb in lower case and no
+ending punctuation.</p></li>
+<li><p>The commit type <strong>MUST</strong> be one of <a class="reference internal" href="#term-build"><span class="xref std std-term">build</span></a>, <a class="reference internal" href="#term-chore"><span class="xref std std-term">chore</span></a>,
+<a class="reference internal" href="#term-ci"><span class="xref std std-term">ci</span></a>, <a class="reference internal" href="#term-docs"><span class="xref std std-term">docs</span></a>, <a class="reference internal" href="#term-feat"><span class="xref std std-term">feat</span></a>, <a class="reference internal" href="#term-fix"><span class="xref std std-term">fix</span></a>, <a class="reference internal" href="#term-perf"><span class="xref std std-term">perf</span></a>,
+<a class="reference internal" href="#term-style"><span class="xref std std-term">style</span></a>, <a class="reference internal" href="#term-refactor"><span class="xref std std-term">refactor</span></a>, or <a class="reference internal" href="#term-test"><span class="xref std std-term">test</span></a>.</p></li>
+</ul>
+</section>
+<section id="commit-scopes">
+<h2>Commit Scopes<a class="headerlink" href="#commit-scopes" title="Link to this heading">#</a></h2>
+<p>An atomic commit can alter multiple files.  For example, an interface
+change would require modifications the class definitions, method
+calls, and property references throughout the codebase.  Per
+<em>Conventional Commits</em>, a commit scope is an <strong>OPTIONAL</strong>
+abbreviation, acronym, codename, or keyword that provides additional
+context to reviewers by naming the essential component of the change.</p>
+<p>For Python code changes, the commit scope <strong>SHOULD</strong> specify the
+second-level Python module name of the code instigating the change.
+The commit scope <strong>MUST NOT</strong> include the module’s top-level prefix or
+any suffixes.  Functional/unit test changes <strong>SHOULD</strong> reference the
+scope of the code being exercised, while changes to integration tests
+<strong>MUST NOT</strong> specify a scope.</p>
+<p>Changes covering multiple scopes or changes not specific to one scope
+<strong>MUST NOT</strong> specify a scope, including changes instigated by code in
+second-level <a class="reference external" href="https://wiki.python.org/moin/DunderAlias">dunder</a>
+modules such as <code class="docutils literal notranslate"><span class="pre">src/Todolist/__init__.py</span></code>.</p>
+</section>
+<section id="commit-types">
+<h2>Commit Types<a class="headerlink" href="#commit-types" title="Link to this heading">#</a></h2>
+<dl class="simple myst glossary">
+<dt id="term-build"><code class="docutils literal notranslate"><span class="pre">build</span></code></dt><dd><p>a change to the build system or external dependencies, e.g., the
+makefile</p>
+</dd>
+</dl>
+<dl class="simple myst glossary">
+<dt id="term-chore"><code class="docutils literal notranslate"><span class="pre">chore</span></code></dt><dd><p>a miscellaneous tooling or tool configuration change, e.g., the
+.gitignore file, or a change not covered by the other commit types</p>
+</dd>
+</dl>
+<dl class="simple myst glossary">
+<dt id="term-ci"><code class="docutils literal notranslate"><span class="pre">ci</span></code></dt><dd><p>a change to continuous integration/continuous delivery (CI/CD)
+processes, e.g., GitHub Actions</p>
+</dd>
+</dl>
+<dl class="simple myst glossary">
+<dt id="term-docs"><code class="docutils literal notranslate"><span class="pre">docs</span></code></dt><dd><p>a documentation-only change, including edits to in-line
+documentation and comments</p>
+</dd>
+</dl>
+<dl class="simple myst glossary">
+<dt id="term-feat"><code class="docutils literal notranslate"><span class="pre">feat</span></code></dt><dd><p>a new feature</p>
+</dd>
+</dl>
+<dl class="simple myst glossary">
+<dt id="term-fix"><code class="docutils literal notranslate"><span class="pre">fix</span></code></dt><dd><p>a bug fix</p>
+</dd>
+</dl>
+<dl class="simple myst glossary">
+<dt id="term-perf"><code class="docutils literal notranslate"><span class="pre">perf</span></code></dt><dd><p>a code change that improves performance</p>
+</dd>
+</dl>
+<dl class="simple myst glossary">
+<dt id="term-refactor"><code class="docutils literal notranslate"><span class="pre">refactor</span></code></dt><dd><p>a code change that neither fixes a bug nor adds a feature</p>
+</dd>
+</dl>
+<dl class="simple myst glossary">
+<dt id="term-style"><code class="docutils literal notranslate"><span class="pre">style</span></code></dt><dd><p>a change that only affects formatting, or a change related to the
+linter configuration</p>
+</dd>
+</dl>
+<dl class="simple myst glossary">
+<dt id="term-test"><code class="docutils literal notranslate"><span class="pre">test</span></code></dt><dd><p>a new test or a correction to an existing test</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="charter.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Project Charter</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="apidocs/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">API Reference</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-environment">Development Environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-style">Code Style</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-messages">Commit Messages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-scopes">Commit Scopes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commit-types">Commit Types</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Research Data and Communication Technologies Benefit Corp.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
