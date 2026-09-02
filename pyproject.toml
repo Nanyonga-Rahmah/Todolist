@@ -19,6 +19,7 @@ classifiers = [
 # constraints to address capability, compatibility, or security
 # issues, and avoid pinning specific versions if possible.
 dependencies = [
+    "flask",
     "structlog",
 ]
 
