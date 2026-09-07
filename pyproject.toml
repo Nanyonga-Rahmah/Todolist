@@ -21,6 +21,7 @@ classifiers = [
 dependencies = [
     "flask",
     "structlog",
+    "flask-sqlalchemy"
 ]
 
 [project.optional-dependencies]

@@ -11,7 +11,7 @@ extend-ignore =
     FI10, FI11, FI12, FI13, FI14, FI15, FI16, FI17, FI18,
     # Test code uses assertions by design.
     S101,
-known-modules = Todolist:[Todolist],faker:[faker]
+known-modules = Todolist:[Todolist],faker:[faker],flask_sqlalchemy:[flask_sqlalchemy]
 
 # Local Variables:
 # mode: conf-unix
