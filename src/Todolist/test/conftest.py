@@ -5,9 +5,9 @@ from collections.abc import Generator
 import pytest
 from _pytest.assertion import truncate
 from faker import Faker
-from flask.testing import FlaskClient
 
 from Todolist import create_app
+from Todolist.Backend.models.database_model import db
 
 fake = Faker()
 
@@ -28,10 +28,15 @@ def todo_data() -> dict:
     }
 
 
-@pytest.fixture(autouse=True)
-def setup() -> Generator[FlaskClient, None, None]:
-    """Provide a flask app instance."""
+@pytest.fixture
+def setup() -> Generator:
+    """Provide a flask app instance with database."""
     app = create_app()
     app.config["TESTING"] = True
-    with app.test_client() as client:
-        yield client
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
+
+    with app.app_context():
+        db.create_all()
+        yield app
+        db.session.remove()
+        db.drop_all()
