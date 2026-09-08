@@ -76,3 +76,23 @@ def test_database_model_delete_todo(setup) -> None:
             db.select(Todo).filter_by(id=todo.id)
         ).scalar_one_or_none()
         assert retrieved_todo is None
+
+
+def test_database_model_update_todo(setup) -> None:
+    """Test a todo can be updated in the database."""
+    with setup.app_context():
+        todo = Todo(
+            title=fake.sentence(nb_words=3),
+            id=fake.uuid4(),
+            description=fake.paragraph(nb_sentences=2),
+            completed=fake.boolean(),
+        )
+        db.session.add(todo)
+        db.session.commit()
+        todo.title = f"{fake.sentence(nb_words=5)}"
+
+        db.session.commit()
+        retrieved_todo = db.session.execute(
+            db.select(Todo).filter_by(id=todo.id)
+        ).scalar_one_or_none()
+        assert retrieved_todo.title == todo.title
