@@ -32,5 +32,26 @@ def test_database_model_gets_all_todos(setup) -> None:
         db.session.add(todo2)
         db.session.commit()
 
-        todos = Todo.query.all()
+        todos = db.session.execute(db.select(Todo)).scalars().all()
         assert len(todos) == 2
+
+
+def test_database_model_add_todo(setup) -> None:
+    """Test a todo is added to the database."""
+    with setup.app_context():
+        todo = Todo(
+            title=fake.sentence(nb_words=3),
+            id=fake.uuid4(),
+            description=fake.paragraph(nb_sentences=2),
+            completed=fake.boolean(),
+        )
+        db.session.add(todo)
+        db.session.commit()
+
+        retrieved_todo = db.session.execute(
+            db.select(Todo).filter_by(id=todo.id)
+        ).scalar_one_or_none()
+        assert retrieved_todo is not None
+        assert retrieved_todo.title == todo.title
+        assert retrieved_todo.description == todo.description
+        assert retrieved_todo.completed == todo.completed
