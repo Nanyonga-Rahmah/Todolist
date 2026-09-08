@@ -33,7 +33,7 @@ def setup() -> Generator:
     """Provide a flask app instance with database."""
     app = create_app()
     app.config["TESTING"] = True
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///test.db"
 
     with app.app_context():
         db.create_all()
