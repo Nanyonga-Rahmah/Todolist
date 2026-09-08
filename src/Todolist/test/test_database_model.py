@@ -1,6 +1,8 @@
 """Test database model."""
 
+import pytest
 from faker import Faker
+from sqlalchemy.exc import IntegrityError
 
 from Todolist.Backend.models.database_model import db
 from Todolist.Backend.models.todo import Todo
@@ -118,3 +120,17 @@ def test_todos_have_unqiue_ids(setup) -> None:
         db.session.commit()
 
         assert todo1.id != todo2.id
+
+
+def test_database_rejects_todos_without_title(setup) -> None:
+    """Test that todos without a title are rejected."""
+    with setup.app_context():
+        todo = Todo(
+            title=None,
+            id=fake.uuid4(),
+            description=fake.paragraph(nb_sentences=2),
+            completed=fake.boolean(),
+        )
+        db.session.add(todo)
+        with pytest.raises(IntegrityError):
+            db.session.commit()
