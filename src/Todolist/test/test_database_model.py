@@ -96,3 +96,25 @@ def test_database_model_update_todo(setup) -> None:
             db.select(Todo).filter_by(id=todo.id)
         ).scalar_one_or_none()
         assert retrieved_todo.title == todo.title
+
+
+def test_todos_have_unqiue_ids(setup) -> None:
+    """Test that todos have unique IDs."""
+    with setup.app_context():
+        todo1 = Todo(
+            title=fake.sentence(nb_words=3),
+            id=fake.uuid4(),
+            description=fake.paragraph(nb_sentences=2),
+            completed=fake.boolean(),
+        )
+        todo2 = Todo(
+            title=fake.sentence(nb_words=3),
+            id=fake.uuid4(),
+            description=fake.paragraph(nb_sentences=2),
+            completed=fake.boolean(),
+        )
+        db.session.add(todo1)
+        db.session.add(todo2)
+        db.session.commit()
+
+        assert todo1.id != todo2.id
