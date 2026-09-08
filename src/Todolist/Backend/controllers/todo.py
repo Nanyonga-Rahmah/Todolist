@@ -28,3 +28,15 @@ class TodoController:
             db.session.delete(todo)
             db.session.commit()
         return todo
+
+    def update_todo(self, todo_id: str, updated_data: Todo) -> Todo:
+        """Update a todo in the database."""
+        retrieved_todo = db.session.execute(
+            db.select(Todo).filter_by(id=todo_id)
+        ).scalar_one_or_none()
+        if retrieved_todo:
+            retrieved_todo.title = updated_data["title"]
+            retrieved_todo.description = updated_data["description"]
+            retrieved_todo.completed = updated_data["completed"]
+            db.session.commit()
+        return retrieved_todo
