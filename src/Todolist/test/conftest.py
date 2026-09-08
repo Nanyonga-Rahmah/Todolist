@@ -5,6 +5,7 @@ from collections.abc import Generator
 import pytest
 from _pytest.assertion import truncate
 from faker import Faker
+from flask.testing import FlaskClient
 
 from Todolist import create_app
 from Todolist.Backend.models.database_model import db
@@ -40,3 +41,9 @@ def setup() -> Generator:
         yield app
         db.session.remove()
         db.drop_all()
+
+
+@pytest.fixture
+def test_app(setup) -> FlaskClient:
+    """Provide a flask testing instannce."""
+    return setup.test_client()
