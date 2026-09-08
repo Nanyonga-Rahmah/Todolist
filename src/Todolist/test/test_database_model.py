@@ -55,3 +55,24 @@ def test_database_model_add_todo(setup) -> None:
         assert retrieved_todo.title == todo.title
         assert retrieved_todo.description == todo.description
         assert retrieved_todo.completed == todo.completed
+
+
+def test_database_model_delete_todo(setup) -> None:
+    """Test a todo is deleted from the database."""
+    with setup.app_context():
+        todo = Todo(
+            title=fake.sentence(nb_words=3),
+            id=fake.uuid4(),
+            description=fake.paragraph(nb_sentences=2),
+            completed=fake.boolean(),
+        )
+        db.session.add(todo)
+        db.session.commit()
+
+        db.session.delete(todo)
+        db.session.commit()
+
+        retrieved_todo = db.session.execute(
+            db.select(Todo).filter_by(id=todo.id)
+        ).scalar_one_or_none()
+        assert retrieved_todo is None
