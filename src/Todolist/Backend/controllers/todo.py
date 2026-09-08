@@ -18,3 +18,13 @@ class TodoController:
         db.session.add(todo)
         db.session.commit()
         return todo
+
+    def delete_todo(self, todo_id: str) -> Todo:
+        """Delete a todo from the database."""
+        todo = db.session.execute(
+            db.select(Todo).filter_by(id=todo_id)
+        ).scalar_one_or_none()
+        if todo:
+            db.session.delete(todo)
+            db.session.commit()
+        return todo
