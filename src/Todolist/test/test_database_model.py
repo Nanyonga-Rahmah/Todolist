@@ -20,13 +20,11 @@ def test_database_model_gets_all_todos(setup) -> None:
     with setup.app_context():
         todo1 = Todo(
             title=fake.sentence(nb_words=3),
-            id=fake.uuid4(),
             description=fake.paragraph(nb_sentences=2),
             completed=fake.boolean(),
         )
         todo2 = Todo(
             title=fake.sentence(nb_words=3),
-            id=fake.uuid4(),
             description=fake.paragraph(nb_sentences=2),
             completed=fake.boolean(),
         )
@@ -43,7 +41,6 @@ def test_database_model_add_todo(setup) -> None:
     with setup.app_context():
         todo = Todo(
             title=fake.sentence(nb_words=3),
-            id=fake.uuid4(),
             description=fake.paragraph(nb_sentences=2),
             completed=fake.boolean(),
         )
@@ -64,7 +61,6 @@ def test_database_model_delete_todo(setup) -> None:
     with setup.app_context():
         todo = Todo(
             title=fake.sentence(nb_words=3),
-            id=fake.uuid4(),
             description=fake.paragraph(nb_sentences=2),
             completed=fake.boolean(),
         )
@@ -85,7 +81,6 @@ def test_database_model_update_todo(setup) -> None:
     with setup.app_context():
         todo = Todo(
             title=fake.sentence(nb_words=3),
-            id=fake.uuid4(),
             description=fake.paragraph(nb_sentences=2),
             completed=fake.boolean(),
         )
@@ -105,13 +100,11 @@ def test_todos_have_unqiue_ids(setup) -> None:
     with setup.app_context():
         todo1 = Todo(
             title=fake.sentence(nb_words=3),
-            id=fake.uuid4(),
             description=fake.paragraph(nb_sentences=2),
             completed=fake.boolean(),
         )
         todo2 = Todo(
             title=fake.sentence(nb_words=3),
-            id=fake.uuid4(),
             description=fake.paragraph(nb_sentences=2),
             completed=fake.boolean(),
         )
@@ -127,7 +120,6 @@ def test_database_rejects_todos_without_title(setup) -> None:
     with setup.app_context():
         todo = Todo(
             title=None,
-            id=fake.uuid4(),
             description=fake.paragraph(nb_sentences=2),
             completed=fake.boolean(),
         )

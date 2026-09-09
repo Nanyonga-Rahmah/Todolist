@@ -22,7 +22,6 @@ truncate.DEFAULT_MAX_CHARS = 999999
 def todo_data() -> dict:
     """Provide sample data for a Todo item."""
     return {
-        "id": fake.uuid4(),
         "title": f"{fake.sentence(nb_words=3)}",
         "description": f"{fake.paragraph(nb_sentences=2)}",
         "completed": fake.boolean(),
