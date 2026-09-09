@@ -9,6 +9,7 @@ from flask.testing import FlaskClient
 
 from Todolist import create_app
 from Todolist.Backend.models.database_model import db
+from Todolist.Backend.models.todo import Todo
 
 fake = Faker()
 
@@ -46,3 +47,18 @@ def setup() -> Generator:
 def test_app(setup) -> FlaskClient:
     """Provide a flask testing instannce."""
     return setup.test_client()
+
+
+@pytest.fixture
+def stored_todo(setup) -> Todo:
+    """Create and store a todo in the database."""
+    created_todo = Todo(
+        title=fake.sentence(nb_words=3),
+        description=fake.paragraph(nb_sentences=2),
+        completed=fake.boolean(),
+    )
+
+    db.session.add(created_todo)
+    db.session.commit()
+
+    return created_todo

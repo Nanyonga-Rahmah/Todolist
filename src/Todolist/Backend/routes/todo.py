@@ -45,3 +45,21 @@ def update_todo(id):
             },
         )
     return "Todo updated successfuly", updated_todo
+
+
+@todo_routes.route("/delete-todo/<int:id>", methods=["DELETE"])
+def delete_todo(id):
+    """Define route for deleting a todo."""
+    if id is None:
+        return "Missing todo-id", 404
+    else:
+        deleted_todo = todo_controller.delete_todo(todo_id=id)
+    return {
+        "message": "Todo deleted successfully",
+        "todo": {
+            "id": deleted_todo.id,
+            "title": deleted_todo.title,
+            "description": deleted_todo.description,
+            "completed": deleted_todo.completed,
+        },
+    }, 200
