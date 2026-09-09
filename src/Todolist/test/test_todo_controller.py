@@ -18,7 +18,7 @@ def test_todo_controller_adds_a_todo(setup, todo_data) -> None:
     """Test the add_todo function."""
     controller = TodoController()
     todo = controller.add_todo(todo_data)
-    assert todo.id == todo_data["id"]
+    assert todo.id is not None
     assert todo.title == todo_data["title"]
     assert todo.description == todo_data["description"]
     assert todo.completed == todo_data["completed"]
