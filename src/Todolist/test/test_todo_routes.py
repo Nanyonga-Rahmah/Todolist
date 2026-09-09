@@ -53,3 +53,11 @@ def test_update_route_missing_a_todo_id(test_app: FlaskClient, todo_data: Todo) 
     """Test that the update route expects todo-id."""
     response = test_app.patch("/update-todo", data=todo_data)
     assert response.status_code == 404
+
+
+def test_deleting_a_todo(test_app: FlaskClient, stored_todo: Todo) -> None:
+    """Test route for deleting a todo."""
+    response = test_app.delete(f"/delete-todo/{stored_todo.id}")
+    assert response.status_code == 200
+    assert b"Todo deleted" in response.data
+    assert b"title" in response.data
