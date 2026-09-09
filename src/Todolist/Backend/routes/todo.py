@@ -13,4 +13,4 @@ todo_controller = TodoController()
 def get_all_todos():
     """Define a route to get all todos."""
     todos = todo_controller.get_todos()
-    return todos
+    return "Todos retrieved successfully", todos
