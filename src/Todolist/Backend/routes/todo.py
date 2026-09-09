@@ -10,25 +10,25 @@ todo_controller = TodoController()
 
 
 @todo_routes.route("/todos")
-def get_all_todos():
+def get_all_todos() -> dict[str, dict]:
     """Define a route to get all todos."""
     todos = todo_controller.get_todos()
-    return "Todos retrieved successfully", todos
+    return {"message": "Todos retrieved successfully", "todos": todos}
 
 
 @todo_routes.route("/create-todo", methods=["POST"])
-def create_todo():
+def create_todo() -> dict[str, str]:
     """Define a route to create a todo."""
     title = request.form["title"]
     description = request.form["description"]
     created_todo = todo_controller.add_todo(
         {"title": title, "description": description}
     )
-    return {"title": created_todo.title, description: created_todo.description}
+    return {"title": created_todo.title, "description": created_todo.description}
 
 
 @todo_routes.route("/update-todo/<int:id>", methods=["PATCH"])
-def update_todo(id):
+def update_todo(id: int) -> str:
     """Define a route for updating a todo."""
     if id is None:
         return "Missing todo-id", 404
@@ -48,7 +48,7 @@ def update_todo(id):
 
 
 @todo_routes.route("/delete-todo/<int:id>", methods=["DELETE"])
-def delete_todo(id):
+def delete_todo(id: int) -> tuple[dict, int]:
     """Define route for deleting a todo."""
     if id is None:
         return "Missing todo-id", 404
