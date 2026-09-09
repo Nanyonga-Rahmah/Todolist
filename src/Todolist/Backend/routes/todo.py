@@ -25,3 +25,23 @@ def create_todo():
         {"title": title, "description": description}
     )
     return {"title": created_todo.title, description: created_todo.description}
+
+
+@todo_routes.route("/update-todo/<int:id>", methods=["PATCH"])
+def update_todo(id):
+    """Define a route for updating a todo."""
+    if id is None:
+        return "Missing todo-id", 404
+    else:
+        title = request.form["title"]
+        description = request.form["description"]
+        completed = request.form["completed"]
+        updated_todo = todo_controller.update_todo(
+            todo_id=id,
+            updated_data={
+                "title": title,
+                "description": description,
+                "completed": completed,
+            },
+        )
+    return "Todo updated successfuly", updated_todo
