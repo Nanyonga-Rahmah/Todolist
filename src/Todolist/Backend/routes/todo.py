@@ -9,12 +9,6 @@ todo_routes = Blueprint("todo_routes", __name__)
 todo_controller = TodoController()
 
 
-@todo_routes.route("/")
-def index():
-    """Define home route."""
-    return "Todos Home Page"
-
-
 @todo_routes.route("/todos")
 def get_all_todos() -> dict[str, dict]:
     """Define a route to get all todos."""

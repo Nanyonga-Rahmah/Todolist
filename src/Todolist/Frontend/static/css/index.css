@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    border-radius: 20px;
+    background-image: linear-gradient(teal 15%,black 15% 100%);
+    width: 500px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    padding:20px;
+    position: relative;
+}
+.heading{
+    text-align: center;
+}
+.button{
+    border-radius: 100px;
+    background-color: teal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    position: fixed;
+    bottom: 200px;
+    align-self: flex-end;
+}
+.fa-plus{
+    font-size: 18px;
+}

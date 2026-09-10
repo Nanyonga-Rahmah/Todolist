@@ -61,9 +61,3 @@ def test_deleting_a_todo(test_app: FlaskClient, stored_todo: Todo) -> None:
     assert response.status_code == 200
     assert b"Todo deleted" in response.data
     assert b"title" in response.data
-
-
-def test_home_route(test_app: FlaskClient) -> None:
-    """Test the home routes displays information to the user."""
-    response = test_app.get("/")
-    assert b"Todo" in response.data
