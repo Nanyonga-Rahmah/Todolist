@@ -31,8 +31,36 @@ body{
     height: 25px;
     position: fixed;
     bottom: 200px;
+    cursor: pointer;
     align-self: flex-end;
 }
 .fa-plus{
     font-size: 18px;
+}
+
+form{
+    border-radius: 20px;
+    color: white;
+    padding: 10px;
+    width: fit-content;
+    display: none;
+
+    background-color: transparent;
+    border: 1px solid whitesmoke;
+}
+.view-form{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 30%;
+}
+.cancel{
+    align-self: flex-end;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.submit{
+    padding: 2px;
+    border-radius: 5px;
+    margin: 5px;
 }

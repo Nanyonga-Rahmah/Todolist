@@ -11,16 +11,36 @@
 </head>
 
 <body>
-<div class="container">
+    <div class="container">
         <h1 class="heading">Todo list</h1>
         <div class="todos">
 
         </div>
 
-        <div class="button">
-<i class="fa-solid fa-plus"></i>
+        <div class="button" id="button">
+            <i class="fa-solid fa-plus"></i>
+        </div>
+        <div class="form">
+
+            <form action="" method="post" id="form">
+                <div class="cancel" id="cancel">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <div>
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" required>
+                </div>
+                <div>
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" rows="" required></textarea>
+                </div>
+                <button type="submit" class="submit" id="submit">Submit</button>
+            </form>
         </div>
 
-</div></body>
+    </div>
+
+    <script src="javascript/index.js"></script>
+</body>
 
 </html>
