@@ -13,7 +13,16 @@ todo_controller = TodoController()
 def get_all_todos() -> dict[str, dict]:
     """Define a route to get all todos."""
     todos = todo_controller.get_todos()
-    return {"message": "Todos retrieved successfully", "todos": todos}
+    todos_data = [
+        {
+            "id": todo.id,
+            "title": todo.title,
+            "description": todo.description,
+            "completed": todo.completed,
+        }
+        for todo in todos
+    ]
+    return {"message": "Todos retrieved successfully", "todos": todos_data}
 
 
 @todo_routes.route("/create-todo", methods=["POST"])
