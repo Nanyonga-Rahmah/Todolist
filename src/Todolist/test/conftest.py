@@ -7,7 +7,7 @@ from _pytest.assertion import truncate
 from faker import Faker
 from flask.testing import FlaskClient
 
-from Todolist import create_app
+from Todolist.Backend.app import create_app
 from Todolist.Backend.models.database_model import db
 from Todolist.Backend.models.todo import Todo
 
