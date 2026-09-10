@@ -24,7 +24,11 @@ def create_todo() -> dict[str, str]:
     created_todo = todo_controller.add_todo(
         {"title": title, "description": description}
     )
-    return {"title": created_todo.title, "description": created_todo.description}
+    return {
+        "title": created_todo.title,
+        "description": created_todo.description,
+        "completed": created_todo.completed,
+    }
 
 
 @todo_routes.route("/update-todo/<int:id>", methods=["PATCH"])
