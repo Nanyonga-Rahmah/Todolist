@@ -21,6 +21,8 @@ classifiers = [
 dependencies = [
     "flask",
     "structlog",
+    "flask-sqlalchemy",
+    "flask_cors"
 ]
 
 [project.optional-dependencies]
@@ -72,6 +74,8 @@ test = [
     "pytest-reportlog",
     "pytest-selenium",
     "selenium",
+    "faker",
+    "sqlalchemy"
 ]
 
 [project.readme]
