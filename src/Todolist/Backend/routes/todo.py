@@ -48,8 +48,8 @@ def update_todo(id: int) -> str:
     else:
         title = request.form["title"]
         description = request.form["description"]
-        completed = request.form["completed"]
-        updated_todo = todo_controller.update_todo(
+        completed = request.form["completed"].lower() == "true"
+        todo_controller.update_todo(
             todo_id=id,
             updated_data={
                 "title": title,
@@ -57,7 +57,7 @@ def update_todo(id: int) -> str:
                 "completed": completed,
             },
         )
-    return "Todo updated successfuly", updated_todo
+    return "Todo updated successfuly", 200
 
 
 @todo_routes.route("/delete-todo/<int:id>", methods=["DELETE"])

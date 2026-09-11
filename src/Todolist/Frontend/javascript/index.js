@@ -48,8 +48,35 @@ form.addEventListener("submit", async (event) => {
     }
 });
 
+const updateTodo = async (todo, completed) => {
+    try {
+        const formData = new FormData();
 
+        formData.append("title", todo.title);
+        formData.append("description", todo.description);
+        formData.append("completed", completed);
 
+        const response = await fetch(
+            `http://localhost:5000/update-todo/${todo.id}`,
+            {
+                method: "PATCH",
+                body: formData,
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.error("Failed to update todo:", data);
+            return;
+        }
+
+        console.log("Todo updated:", data);
+
+    } catch (error) {
+        console.error("Failed to update todo:", error);
+    }
+};
 const displayTodos = async () => {
     try {
         const response = await fetch("http://localhost:5000/todos");
@@ -69,9 +96,14 @@ const displayTodos = async () => {
             todoElement.classList.add("todo");
 
             todoElement.innerHTML = `
-            <input type="checkbox" id=${todo.id} name=${todo.title} value=${todo.title}>
+            <input type="checkbox" id=${todo.id} name=${todo.title} value=${todo.title}   ${todo.completed ? "checked" : ""}>
                 <h3>${todo.title}</h3>
             `;
+            const checkbox = todoElement.querySelector("input");
+
+            checkbox.addEventListener("change", () => {
+                updateTodo(todo, checkbox.checked);
+            });
 
             todoList.appendChild(todoElement);
         });
@@ -80,5 +112,6 @@ const displayTodos = async () => {
         console.error("Failed to retrieve todos:", error);
     }
 };
+
 
 displayTodos();
